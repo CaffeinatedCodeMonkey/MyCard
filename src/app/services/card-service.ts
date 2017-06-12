@@ -15,21 +15,20 @@ export class CardService {
         github: string|null,
         linkedin: string|null,
         blurb: string|null
+    } = {
+        image_url: null,
+        full_name: null,
+        phone1: null,
+        phone2: null,
+        email: null,
+        github: null,
+        linkedin: null,
+        blurb: null
     };
 
     constructor(public storage: Storage) {
 
         let self:CardService = this;
-
-        // Initialize all the variables.
-        self.card.image_url = null;
-        self.card.full_name = null;
-        self.card.phone1 = null;
-        self.card.phone2 = null;
-        self.card.email = null;
-        self.card.github = null;
-        self.card.linkedin = null;
-        self.card.blurb = null;
 
         self.populate();
     }
@@ -61,11 +60,12 @@ export class CardService {
      * @param key
      * @returns {any}
      */
-    public get(key?:string):object|string|null|undefined {
+    public get(key?:string):any {
 
         let self:CardService = this;
 
         if(!key) {
+            console.log(self);
             return self.card;
         }
 

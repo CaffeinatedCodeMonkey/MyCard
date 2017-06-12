@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { Storage } from '@ionic/storage';
 import { CardService } from "../../app/services/card-service";
 
 @Component({
@@ -9,6 +8,7 @@ import { CardService } from "../../app/services/card-service";
     providers: [CardService]
 })
 export class CardSend {
+
     private card:{
         image_url: string|null,
         full_name: string|null,
@@ -21,16 +21,18 @@ export class CardSend {
     };
 
     constructor(public navCtrl: NavController, private cardService: CardService) {
+
         let self:CardSend = this;
 
-        self.card = self.card || {image_url: null, full_name: null};
+        self.card = self.cardService.get();
+
     }
 
     ngOnInit() {
         let self:CardSend = this;
 
         // Retrieve the card information.
-        var card = CardService.get();
+        self.card = self.cardService.get();
 
     }
 

@@ -15,8 +15,9 @@ export class HomePage {
     constructor(public navCtrl: NavController) {
 
         let self:HomePage = this;
-        self.cardSend = CardSend;
+
         self.cardEdit = CardEdit;
+        self.cardSend = CardSend;
 
     }
 
