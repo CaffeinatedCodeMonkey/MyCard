@@ -1,0 +1,15 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>Send Card</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+
+    <ion-list>
+        <ion-row>
+            <ion-img [src]="card.image_url"></ion-img>
+            <ion-label [class]="card.full_name ? 'text-semibold' : 'text-muted'">{{ card.full_name || 'Full Name' }}</ion-label>
+        </ion-row>
+    </ion-list>
+
+</ion-content>
