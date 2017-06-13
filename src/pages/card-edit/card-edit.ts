@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { CardService, Card } from "../../app/services/card-service";
-declare var jquery:any;
-declare var $:any;
 
 @Component({
     selector: 'page-card-edit',
@@ -31,7 +29,7 @@ export class CardEdit {
 
     public fnSelectImage():void {
 
-        
+
 
     }
 }

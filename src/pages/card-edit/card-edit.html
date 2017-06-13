@@ -6,11 +6,12 @@
 <ion-content>
     <ion-list>
         <ion-item color="primary">
-            <button ion-button icon-left (click)="fnSelectImage()">
-                <ion-icon name="image"></ion-icon>
-                Profile Picture
-            </button>
-            <input type="file" accept="image/*" [(ngModel)]="card.image_url" />
+            <file-selector>
+                <button ion-button icon-left>
+                    <ion-icon name="image"></ion-icon>
+                    Profile Picture
+                </button>
+            </file-selector>
         </ion-item>
         <ion-item color="primary">
             <ion-label stacked>Full Name</ion-label>

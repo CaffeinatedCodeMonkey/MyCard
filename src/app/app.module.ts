@@ -10,13 +10,15 @@ import { HomePage } from '../pages/home/home';
 import { CardEdit } from '../pages/card-edit/card-edit';
 import { CardSend } from '../pages/card-send/card-send';
 import { CardService } from './services/card-service';
+import { FileSelector } from "./components/file-selector/file-selector";
 
 @NgModule({
     declarations: [
         MyApp,
         HomePage,
         CardEdit,
-        CardSend
+        CardSend,
+        FileSelector
     ],
     imports: [
         BrowserModule,
@@ -28,7 +30,8 @@ import { CardService } from './services/card-service';
         MyApp,
         HomePage,
         CardEdit,
-        CardSend
+        CardSend,
+        FileSelector
     ],
     providers: [
         StatusBar,
