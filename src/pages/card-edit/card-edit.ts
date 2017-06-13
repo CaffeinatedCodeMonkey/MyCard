@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { CardService } from "../../app/services/card-service";
+import { CardService, Card } from "../../app/services/card-service";
+declare var jquery:any;
+declare var $:any;
 
 @Component({
     selector: 'page-card-edit',
@@ -8,16 +10,7 @@ import { CardService } from "../../app/services/card-service";
 })
 export class CardEdit {
 
-    private card:{
-        image_url: string|null,
-        full_name: string|null,
-        phone1: string|null,
-        phone2: string|null,
-        email: string|null,
-        github: string|null,
-        linkedin: string|null,
-        blurb: string|null
-    };
+    private card:Card;
 
     constructor(public navCtrl: NavController, private cardService: CardService) {
 
@@ -28,10 +21,17 @@ export class CardEdit {
     }
 
     ngOnInit() {
+
         let self:CardEdit = this;
 
         // Retrieve the card information.
         self.card = self.cardService.get();
+
+    }
+
+    public fnSelectImage():void {
+
+        
 
     }
 }

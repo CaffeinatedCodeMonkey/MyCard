@@ -6,16 +6,7 @@ const CARD = 'card';
 @Injectable()
 export class CardService {
 
-    public card:{
-        image_url: string|null,
-        full_name: string|null,
-        phone1: string|null,
-        phone2: string|null,
-        email: string|null,
-        github: string|null,
-        linkedin: string|null,
-        blurb: string|null
-    } = {
+    public card:Card = {
         image_url: null,
         full_name: null,
         phone1: null,
@@ -65,7 +56,6 @@ export class CardService {
         let self:CardService = this;
 
         if(!key) {
-            console.log(self);
             return self.card;
         }
 
@@ -135,4 +125,18 @@ export class CardService {
         self.storage.set(CARD, JSON.stringify(self.card));
 
     }
+}
+
+/**
+ * This is the interface for the Card
+ */
+export interface Card {
+    image_url: string|null,
+    full_name: string|null,
+    phone1: string|null,
+    phone2: string|null,
+    email: string|null,
+    github: string|null,
+    linkedin: string|null,
+    blurb: string|null
 }

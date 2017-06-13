@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { CardService } from "../../app/services/card-service";
+import { CardService, Card } from "../../app/services/card-service";
 
 @Component({
     selector: 'page-card-send',
@@ -9,16 +9,7 @@ import { CardService } from "../../app/services/card-service";
 })
 export class CardSend {
 
-    private card:{
-        image_url: string|null,
-        full_name: string|null,
-        phone1: string|null,
-        phone2: string|null,
-        email: string|null,
-        github: string|null,
-        linkedin: string|null,
-        blurb: string|null
-    };
+    private card:Card;
 
     constructor(public navCtrl: NavController, private cardService: CardService) {
 
