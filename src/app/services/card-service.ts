@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
+import { Card } from "../interfaces/card";
 
 const CARD = 'card';
 
@@ -19,7 +20,7 @@ export class CardService {
 
     /**
      * Constructor
-     * 
+     *
      * @param storage
      */
     constructor(public storage: Storage) {
@@ -42,6 +43,7 @@ export class CardService {
                 (card) => {
                     if(card) {
                         self.card = JSON.parse(card);
+                        console.log(self.card);
                     }
                 }
             );
@@ -130,18 +132,4 @@ export class CardService {
         self.storage.set(CARD, JSON.stringify(self.card));
 
     }
-}
-
-/**
- * This is the interface for the Card
- */
-export interface Card {
-    image_url: string|null,
-    full_name: string|null,
-    phone1: string|null,
-    phone2: string|null,
-    email: string|null,
-    github: string|null,
-    linkedin: string|null,
-    blurb: string|null
 }

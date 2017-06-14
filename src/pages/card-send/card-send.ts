@@ -1,12 +1,16 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { CardService, Card } from "../../app/services/card-service";
+import { CardService } from "../../app/services/card-service";
+import {Card} from "../../app/interfaces/card";
 
 @Component({
     selector: 'page-card-send',
     templateUrl: 'card-send.html',
     providers: [CardService]
 })
+/**
+ * This is the class for the component that handles the view for sending cards.
+ */
 export class CardSend {
 
     private card:Card;

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { BaseComponent } from "../base-component";
 
 /**
@@ -10,8 +10,8 @@ import { BaseComponent } from "../base-component";
 })
 export class FileSelector extends BaseComponent {
 
-    public file:any;
-    public accept:string;
+    @Input('file') public file:any;
+    @Input('accept') public accept:string;
     protected selectors:{file_input:string, select_trigger:string} = {
         file_input: '.hidden-input > input[type="file"]',
         select_trigger: '.file-selector-trigger',

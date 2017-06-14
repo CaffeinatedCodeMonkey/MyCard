@@ -1,45 +1,47 @@
 <ion-header>
     <ion-navbar color="primary">
         <ion-title>Edit Card</ion-title>
+        <button (click)="save()" icon-right><ion-icon name="check"></ion-icon></button>
     </ion-navbar>
 </ion-header>
 <ion-content>
     <ion-list>
         <ion-item color="primary">
-            <file-selector>
+            <file-selector [(ngModel)]="card.image_url" name="file" [accept]="'image/*'" (change)="imageChange($event)" ngDefaultControl>
                 <button ion-button icon-left>
                     <ion-icon name="image"></ion-icon>
                     Profile Picture
                 </button>
             </file-selector>
+            <img [src]="card.image_url">
         </ion-item>
         <ion-item color="primary">
             <ion-label stacked>Full Name</ion-label>
-            <ion-input type="text" [(ngModel)]="card.full_name"></ion-input>
+            <ion-input type="text" [(ngModel)]="card.full_name" name="full_name"></ion-input>
         </ion-item>
         <ion-item color="primary">
             <ion-label stacked>Phone 1</ion-label>
-            <ion-input type="text" [(ngModel)]="card.phone1"></ion-input>
+            <ion-input type="text" [(ngModel)]="card.phone1" name="phone1"></ion-input>
         </ion-item>
         <ion-item color="primary">
             <ion-label stacked>Phone 2</ion-label>
-            <ion-input type="text" [(ngModel)]="card.phone2"></ion-input>
+            <ion-input type="text" [(ngModel)]="card.phone2" name="phone2"></ion-input>
         </ion-item>
         <ion-item color="primary">
             <ion-label stacked>Email</ion-label>
-            <ion-input type="email" [(ngModel)]="card.email"></ion-input>
+            <ion-input type="email" [(ngModel)]="card.email" name="email"></ion-input>
         </ion-item>
         <ion-item color="primary">
             <ion-label stacked>GitHub</ion-label>
-            <ion-input type="text" [(ngModel)]="card.github"></ion-input>
+            <ion-input type="text" [(ngModel)]="card.github" name="github"></ion-input>
         </ion-item>
         <ion-item color="primary">
             <ion-label stacked>LinkedIn</ion-label>
-            <ion-input type="text" [(ngModel)]="card.linkedin"></ion-input>
+            <ion-input type="text" [(ngModel)]="card.linkedin" name="linkedin"></ion-input>
         </ion-item>
         <ion-item color="primary">
             <ion-label stacked>Blurb</ion-label>
-            <ion-input type="text" [(ngModel)]="card.blurb"></ion-input>
+            <ion-input type="text" [(ngModel)]="card.blurb" name="blurb"></ion-input>
         </ion-item>
     </ion-list>
 </ion-content>
