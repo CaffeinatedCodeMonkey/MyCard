@@ -17,6 +17,11 @@ export class CardService {
         blurb: null
     };
 
+    /**
+     * Constructor
+     * 
+     * @param storage
+     */
     constructor(public storage: Storage) {
 
         let self:CardService = this;
