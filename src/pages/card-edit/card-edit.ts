@@ -54,22 +54,6 @@ export class CardEdit extends BaseComponent {
             );
 
     }
-    //
-    // /**
-    //  * Upon initialization: retrieves the card.
-    //  */
-    // ngOnInit() {
-    //
-    //     let self:CardEdit = this;
-    //
-    //     // Retrieve the card information.
-    //     self.card = self.cardService.get();
-    //
-    //     console.log(JSON.stringify(self.card));
-    //
-    //     this.change.detectChanges();
-    //
-    // }
 
     /**
      * The event that occurs when the file-selector updates.

@@ -15,6 +15,12 @@ export class CardSend {
 
     private card:Card;
 
+    /**
+     * Constructor
+     *
+     * @param navCtrl
+     * @param cardService
+     */
     constructor(public navCtrl: NavController, private cardService: CardService) {
 
         let self:CardSend = this;
@@ -30,13 +36,5 @@ export class CardSend {
             );
 
     }
-
-    // ngOnInit() {
-    //     let self:CardSend = this;
-    //
-    //     // Retrieve the card information.
-    //     self.card = self.cardService.get();
-    //
-    // }
 
 }
