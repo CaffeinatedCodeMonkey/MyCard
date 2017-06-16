@@ -1,9 +1,9 @@
-import {Component, ElementRef} from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { CardService } from "../../app/services/card-service";
 import { BaseComponent } from "../../app/components/base-component";
 import { Card } from "../../app/interfaces/card";
-import {MyLogger} from "../../app/library/my-logger";
+import { MyLogger } from "../../app/library/my-logger";
 
 @Component({
     selector: 'page-card-edit',
@@ -14,7 +14,16 @@ import {MyLogger} from "../../app/library/my-logger";
  */
 export class CardEdit extends BaseComponent {
 
-    private card:Card;
+    private card:Card = {
+        image_url: null,
+        full_name: null,
+        phone1: null,
+        phone2: null,
+        email: null,
+        github: null,
+        linkedin: null,
+        blurb: null
+    };
     protected selectors:any = {
         component: 'page-card-edit'
     };
@@ -26,28 +35,41 @@ export class CardEdit extends BaseComponent {
      * @param el
      * @param navCtrl
      * @param cardService
+     * @param change
      */
-    constructor(protected el:ElementRef, public navCtrl: NavController, private cardService: CardService) {
+    constructor(protected el:ElementRef, public navCtrl: NavController, private cardService: CardService, protected change:ChangeDetectorRef) {
 
         super(el);
 
         let self:CardEdit = this;
 
-        self.card = self.cardService.get();
-MyLogger.log(self.card);
-    }
+        self.cardService
+            .get()
+            .then(
+                (value) => {
 
-    /**
-     * Upon initialization: retrieves the card.
-     */
-    ngOnInit() {
+                    self.card = value;
 
-        let self:CardEdit = this;
-
-        // Retrieve the card information.
-        self.card = self.cardService.get();
+                }
+            );
 
     }
+    //
+    // /**
+    //  * Upon initialization: retrieves the card.
+    //  */
+    // ngOnInit() {
+    //
+    //     let self:CardEdit = this;
+    //
+    //     // Retrieve the card information.
+    //     self.card = self.cardService.get();
+    //
+    //     console.log(JSON.stringify(self.card));
+    //
+    //     this.change.detectChanges();
+    //
+    // }
 
     /**
      * The event that occurs when the file-selector updates.

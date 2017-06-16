@@ -19,16 +19,24 @@ export class CardSend {
 
         let self:CardSend = this;
 
-        self.card = self.cardService.get();
+        self.cardService
+            .get()
+            .then(
+                (value) => {
+
+                    self.card = value;
+
+                }
+            );
 
     }
 
-    ngOnInit() {
-        let self:CardSend = this;
-
-        // Retrieve the card information.
-        self.card = self.cardService.get();
-
-    }
+    // ngOnInit() {
+    //     let self:CardSend = this;
+    //
+    //     // Retrieve the card information.
+    //     self.card = self.cardService.get();
+    //
+    // }
 
 }

@@ -7,6 +7,7 @@ const CARD = 'card';
 @Injectable()
 export class CardService {
 
+    private ready:boolean = false;
     public card:Card = {
         image_url: null,
         full_name: null,
@@ -28,25 +29,32 @@ export class CardService {
         let self:CardService = this;
 
         self.populate();
+
     }
 
     /**
      * Populates the CardService with all of the user's information.
      */
-    public populate() {
+    public populate(): Promise<Card|any> {
 
         let self:CardService = this;
 
-        // Retrieve all of the variables from storage.
-        self.storage.get(CARD)
-            .then(
-                (card) => {
-                    if(card) {
-                        self.card = JSON.parse(card);
-                        console.log(self.card);
-                    }
-                }
-            );
+        return new Promise((resolve, reject) => {
+                // Retrieve all of the variables from storage.
+                self.storage.get(CARD)
+                    .then(
+                        (card) => {
+                            if(card) {
+                                self.card = JSON.parse(card);
+
+                                resolve(self.card);
+                            }
+                        },
+                        (error) => {
+                            reject(error);
+                        }
+                    );
+            });
 
     }
 
@@ -56,22 +64,54 @@ export class CardService {
      * If a key is passed, but is not a property of the service, it returns undefined.
      *
      * @param key
-     * @returns {any}
+     * @returns {Promise<T>}
      */
-    public get(key?:string):any {
+    public get(key?:string):Promise<object|string|any> {
 
         let self:CardService = this;
 
-        if(!key) {
-            return self.card;
-        }
+        return new Promise((resolve, reject) => {
 
-        if(self.card.hasOwnProperty(key)) {
-            return self.card[key];
-        }
+            if(!self.ready) {
 
-        return undefined;
+                return self.populate()
+                    .then(
+                        (card:Card) => {
 
+                            if(!key) {
+                                resolve(self.card);
+                            }
+                            else if(self.card.hasOwnProperty(key)) {
+                                resolve(self.card[key]);
+                            }
+                            else {
+                                reject();
+                            }
+
+                        },
+                        (error:any) => {
+
+                            reject(error);
+
+                        }
+                    );
+
+            }
+            else {
+
+                if(!key) {
+                    resolve(self.card);
+                }
+                else if(self.card.hasOwnProperty(key)) {
+                    resolve(self.card[key]);
+                }
+                else {
+                    reject();
+                }
+
+            }
+
+        });
     }
 
     /**
