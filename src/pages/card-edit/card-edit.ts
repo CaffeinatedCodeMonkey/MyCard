@@ -37,7 +37,7 @@ export class CardEdit extends BaseComponent {
      * @param cardService
      * @param change
      */
-    constructor(protected el:ElementRef, public navCtrl: NavController, private cardService: CardService, protected change:ChangeDetectorRef) {
+    constructor(protected el:ElementRef, public navCtrl: NavController, private cardService: CardService) {
 
         super(el);
 

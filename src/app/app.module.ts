@@ -12,6 +12,7 @@ import { CardEdit } from '../pages/card-edit/card-edit';
 import { CardSend } from '../pages/card-send/card-send';
 import { CardService } from './services/card-service';
 import { FileSelector } from "./components/file-selector/file-selector";
+import { EmailFirst } from "../email-templates/first/first";
 
 @NgModule({
     declarations: [
@@ -19,6 +20,7 @@ import { FileSelector } from "./components/file-selector/file-selector";
         HomePage,
         CardEdit,
         CardSend,
+        EmailFirst,
         FileSelector
     ],
     imports: [

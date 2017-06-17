@@ -40,6 +40,7 @@ export class CardService {
         let self:CardService = this;
 
         return new Promise((resolve, reject) => {
+
                 // Retrieve all of the variables from storage.
                 self.storage.get(CARD)
                     .then(
@@ -54,6 +55,7 @@ export class CardService {
                             reject(error);
                         }
                     );
+
             });
 
     }
@@ -74,9 +76,11 @@ export class CardService {
 
             if(!self.ready) {
 
+                // If I haven't populated the card yet with what's in storage, do so.
+
                 return self.populate()
                     .then(
-                        (card:Card) => {
+                        () => { // If I've successfully populated the card.
 
                             if(!key) {
                                 resolve(self.card);
@@ -89,7 +93,7 @@ export class CardService {
                             }
 
                         },
-                        (error:any) => {
+                        (error:any) => { // If getting the card resulted in an error.
 
                             reject(error);
 
@@ -98,6 +102,8 @@ export class CardService {
 
             }
             else {
+
+                // If I've already retrieved the card, let's deal with the info we've got.
 
                 if(!key) {
                     resolve(self.card);
@@ -124,8 +130,10 @@ export class CardService {
 
         let self:CardService = this;
 
+        // Set the value.
         self.card[key] = value;
 
+        // Commit the change to storage.
         self.commit();
 
     }
@@ -139,12 +147,14 @@ export class CardService {
 
         let self:CardService = this;
 
+        // Set the values.
         for(let i in card) {
             if(self.card.hasOwnProperty(i)) {
                 self.card[i] = card[i];
             }
         }
 
+        // Commit the change(s) to storage.
         self.commit();
 
     }
@@ -158,6 +168,7 @@ export class CardService {
 
         let self:CardService = this;
 
+        // Leverage this class's set function.
         self.set(key, null);
 
     }

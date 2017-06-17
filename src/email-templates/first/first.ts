@@ -1,17 +1,16 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
 import { CardService } from "../../app/services/card-service";
 import { Card } from "../../app/interfaces/card";
 
 @Component({
-    selector: 'page-card-send',
-    templateUrl: 'card-send.html',
+    selector: 'email-template-first',
+    templateUrl: 'first.html',
     providers: [CardService]
 })
 /**
  * This is the class for the component that handles the view for sending cards.
  */
-export class CardSend {
+export class EmailFirst {
 
     private card:Card = {
         image_url: null,
@@ -30,9 +29,9 @@ export class CardSend {
      * @param navCtrl
      * @param cardService
      */
-    constructor(public navCtrl: NavController, private cardService: CardService) {
+    constructor(private cardService: CardService) {
 
-        let self:CardSend = this;
+        let self:EmailFirst = this;
 
         self.cardService
             .get()
