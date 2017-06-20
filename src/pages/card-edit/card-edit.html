@@ -1,7 +1,9 @@
 <ion-header>
     <ion-navbar color="primary">
-        <ion-title>Edit Card</ion-title>
-        <button (click)="save()" icon-right><ion-icon name="check"></ion-icon></button>
+        <ion-title class="title">Edit Card</ion-title>
+        <ion-buttons end>
+            <button (click)="save()" ion-button><span><ion-icon name="checkmark"></ion-icon>  Save</span></button>
+        </ion-buttons>
     </ion-navbar>
 </ion-header>
 <ion-content>
@@ -13,7 +15,7 @@
                     Profile Picture
                 </button>
             </file-selector>
-            <img [src]="card.image_url">
+            <img rounded [src]="card.image_url">
         </ion-item>
         <ion-item color="primary">
             <ion-label stacked>Full Name</ion-label>

@@ -13,6 +13,8 @@ import { CardSend } from '../pages/card-send/card-send';
 import { CardService } from './services/card-service';
 import { FileSelector } from "./components/file-selector/file-selector";
 import { EmailFirst } from "../email-templates/first/first";
+import { EmailSecond } from "../email-templates/second/second";
+import { Rounded } from "./directives/rounded";
 
 @NgModule({
     declarations: [
@@ -21,7 +23,9 @@ import { EmailFirst } from "../email-templates/first/first";
         CardEdit,
         CardSend,
         EmailFirst,
-        FileSelector
+        EmailSecond,
+        FileSelector,
+        Rounded
     ],
     imports: [
         BrowserModule,

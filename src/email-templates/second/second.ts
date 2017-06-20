@@ -3,14 +3,14 @@ import { CardService } from "../../app/services/card-service";
 import { Card } from "../../app/interfaces/card";
 
 @Component({
-    selector: 'email-template-first',
-    templateUrl: 'first.html',
+    selector: 'email-template-second',
+    templateUrl: 'second.html',
     providers: [CardService]
 })
 /**
  * This is the class for the component that handles the view for sending cards.
  */
-export class EmailFirst {
+export class EmailSecond {
 
     private card:Card = {
         image_url: null,
@@ -31,7 +31,7 @@ export class EmailFirst {
      */
     constructor(private cardService: CardService) {
 
-        let self:EmailFirst = this;
+        let self:EmailSecond = this;
 
         self.cardService
             .get()
