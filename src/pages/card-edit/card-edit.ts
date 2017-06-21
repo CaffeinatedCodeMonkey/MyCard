@@ -22,6 +22,7 @@ export class CardEdit extends BaseComponent {
         email: null,
         github: null,
         linkedin: null,
+        twitter: null,
         blurb: null
     };
     protected selectors:any = {

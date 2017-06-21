@@ -9,13 +9,15 @@
 <ion-content>
     <ion-list>
         <ion-item color="primary">
+            <ion-avatar *ngIf="card.image_url" item-start>
+                <img [src]="card.image_url">
+            </ion-avatar>
             <file-selector [(ngModel)]="card.image_url" name="file" [accept]="'image/*'" (change)="imageChange($event)" ngDefaultControl>
                 <button ion-button icon-left>
                     <ion-icon name="image"></ion-icon>
                     Profile Picture
                 </button>
             </file-selector>
-            <img rounded [src]="card.image_url">
         </ion-item>
         <ion-item color="primary">
             <ion-label stacked>Full Name</ion-label>
@@ -40,6 +42,10 @@
         <ion-item color="primary">
             <ion-label stacked>LinkedIn</ion-label>
             <ion-input type="text" [(ngModel)]="card.linkedin" name="linkedin"></ion-input>
+        </ion-item>
+        <ion-item color="primary">
+            <ion-label stacked>Twitter</ion-label>
+            <ion-input type="text" [(ngModel)]="card.twitter" name="twitter"></ion-input>
         </ion-item>
         <ion-item color="primary">
             <ion-label stacked>Blurb</ion-label>

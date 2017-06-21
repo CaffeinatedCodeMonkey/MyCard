@@ -15,6 +15,7 @@ import { FileSelector } from "./components/file-selector/file-selector";
 import { EmailFirst } from "../email-templates/first/first";
 import { EmailSecond } from "../email-templates/second/second";
 import { Rounded } from "./directives/rounded";
+import { PaddingTop, PaddingRight, PaddingBottom, PaddingLeft } from "./directives/padding";
 
 @NgModule({
     declarations: [
@@ -25,7 +26,11 @@ import { Rounded } from "./directives/rounded";
         EmailFirst,
         EmailSecond,
         FileSelector,
-        Rounded
+        Rounded,
+        PaddingTop,
+        PaddingRight,
+        PaddingBottom,
+        PaddingLeft
     ],
     imports: [
         BrowserModule,

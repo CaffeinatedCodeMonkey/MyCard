@@ -20,6 +20,7 @@ export class EmailSecond {
         email: null,
         github: null,
         linkedin: null,
+        twitter: null,
         blurb: null
     };
 

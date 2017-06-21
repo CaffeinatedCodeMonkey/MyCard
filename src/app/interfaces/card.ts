@@ -9,5 +9,6 @@ export interface Card {
     email: string|null,
     github: string|null,
     linkedin: string|null,
+    twitter: string|null,
     blurb: string|null
 }

@@ -16,6 +16,7 @@ export class CardService {
         email: null,
         github: null,
         linkedin: null,
+        twitter: null,
         blurb: null
     };
 

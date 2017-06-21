@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
 import { CardService } from "../../app/services/card-service";
 import { Card } from "../../app/interfaces/card";
 
@@ -21,16 +20,22 @@ export class CardSend {
         email: null,
         github: null,
         linkedin: null,
+        twitter: null,
         blurb: null
     };
 
     /**
      * Constructor
      *
-     * @param navCtrl
      * @param cardService
+     * @return void
      */
-    constructor(public navCtrl: NavController, private cardService: CardService) {
+    constructor(private cardService: CardService) {}
+
+    /**
+     * Retrieves the new card each time it enters the view.
+     */
+    ngOnInit():void {
 
         let self:CardSend = this;
 
