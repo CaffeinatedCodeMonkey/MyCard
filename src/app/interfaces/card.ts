@@ -1,7 +1,7 @@
 /**
  * This is the interface for the Card
  */
-export interface Card {
+export interface McCard {
     image_url: string|null,
     full_name: string|null,
     phone1: string|null,

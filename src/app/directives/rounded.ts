@@ -7,4 +7,4 @@ import { Directive } from '@angular/core';
     }
 })
 
-export class Rounded {}
+export class McRounded {}

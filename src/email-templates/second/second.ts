@@ -1,18 +1,18 @@
 import { Component } from '@angular/core';
-import { CardService } from "../../app/services/card-service";
-import { Card } from "../../app/interfaces/card";
+import { McCardService } from "../../app/services/card-service";
+import { McCard } from "../../app/interfaces/card";
 
 @Component({
     selector: 'email-template-second',
     templateUrl: 'second.html',
-    providers: [CardService]
+    providers: [McCardService]
 })
 /**
  * This is the class for the component that handles the view for sending cards.
  */
-export class EmailSecond {
+export class McEmailSecond {
 
-    private card:Card = {
+    private card:McCard = {
         image_url: null,
         full_name: null,
         phone1: null,
@@ -27,12 +27,11 @@ export class EmailSecond {
     /**
      * Constructor
      *
-     * @param navCtrl
      * @param cardService
      */
-    constructor(private cardService: CardService) {
+    constructor(private cardService: McCardService) {
 
-        let self:EmailSecond = this;
+        let self:McEmailSecond = this;
 
         self.cardService
             .get()

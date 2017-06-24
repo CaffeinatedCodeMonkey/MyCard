@@ -1,7 +1,7 @@
 /**
  * Serves to log info and errors both to the console and remotely.
  */
-export class MyLogger {
+export class McLogger {
 
     /**
      * Logs the given arguments to the console and remotely.

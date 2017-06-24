@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
-import { Card } from "../interfaces/card";
+import { McCard } from "../interfaces/card";
 
 const CARD = 'card';
 
 @Injectable()
-export class CardService {
+export class McCardService {
 
     private ready:boolean = false;
-    public card:Card = {
+    public card:McCard = {
         image_url: null,
         full_name: null,
         phone1: null,
@@ -27,7 +27,7 @@ export class CardService {
      */
     constructor(public storage: Storage) {
 
-        let self:CardService = this;
+        let self:McCardService = this;
 
         self.populate();
 
@@ -36,9 +36,9 @@ export class CardService {
     /**
      * Populates the CardService with all of the user's information.
      */
-    public populate(): Promise<Card|any> {
+    public populate(): Promise<McCard|any> {
 
-        let self:CardService = this;
+        let self:McCardService = this;
 
         return new Promise((resolve, reject) => {
 
@@ -71,7 +71,7 @@ export class CardService {
      */
     public get(key?:string):Promise<object|string|any> {
 
-        let self:CardService = this;
+        let self:McCardService = this;
 
         return new Promise((resolve, reject) => {
 
@@ -129,7 +129,7 @@ export class CardService {
      */
     public set(key:string, value:string|null):void {
 
-        let self:CardService = this;
+        let self:McCardService = this;
 
         // Set the value.
         self.card[key] = value;
@@ -146,7 +146,7 @@ export class CardService {
      */
     public setCard(card:object):void {
 
-        let self:CardService = this;
+        let self:McCardService = this;
 
         // Set the values.
         for(let i in card) {
@@ -167,7 +167,7 @@ export class CardService {
      */
     public unset(key:string):void {
 
-        let self:CardService = this;
+        let self:McCardService = this;
 
         // Leverage this class's set function.
         self.set(key, null);
@@ -179,7 +179,7 @@ export class CardService {
      */
     private commit():void {
 
-        let self:CardService = this;
+        let self:McCardService = this;
 
         self.storage.set(CARD, JSON.stringify(self.card));
 

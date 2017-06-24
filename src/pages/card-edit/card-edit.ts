@@ -1,20 +1,24 @@
-import { ChangeDetectorRef, Component, ElementRef } from '@angular/core';
-import { NavController } from 'ionic-angular';
-import { CardService } from "../../app/services/card-service";
+import { Component, ElementRef } from '@angular/core';
+import { McCardService } from "../../app/services/card-service";
 import { BaseComponent } from "../../app/components/base-component";
-import { Card } from "../../app/interfaces/card";
-import { MyLogger } from "../../app/library/my-logger";
+import { McCard } from "../../app/interfaces/card";
+import { McLogger } from "../../app/library/logger";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 @Component({
     selector: 'page-card-edit',
-    templateUrl: 'card-edit.html'
+    templateUrl: 'card-edit.html',
+    providers: [
+        FormBuilder
+    ]
 })
 /**
  * This is the class for the component that handles editing cards.
  */
-export class CardEdit extends BaseComponent {
+export class McCardEdit extends BaseComponent {
 
-    private card:Card = {
+    private cardFormGroup:FormGroup;
+    private card:McCard = {
         image_url: null,
         full_name: null,
         phone1: null,
@@ -34,15 +38,26 @@ export class CardEdit extends BaseComponent {
      * Constructor
      *
      * @param el
-     * @param navCtrl
      * @param cardService
-     * @param change
+     * @param formBuilder
      */
-    constructor(protected el:ElementRef, public navCtrl: NavController, private cardService: CardService) {
+    constructor(protected el:ElementRef, private cardService:McCardService, private formBuilder:FormBuilder) {
 
         super(el);
 
-        let self:CardEdit = this;
+        let self:McCardEdit = this;
+
+        self.cardFormGroup = self.formBuilder.group({
+            image_url: [''],
+            full_name: ['', Validators.required],
+            phone1: [''],
+            phone2: [''],
+            email: ['', Validators.required],
+            github: [''],
+            linkedin: [''],
+            twitter: [''],
+            blurb: ['']
+        });
 
         self.cardService
             .get()
@@ -50,6 +65,18 @@ export class CardEdit extends BaseComponent {
                 (value) => {
 
                     self.card = value;
+
+                    self.cardFormGroup = self.formBuilder.group({
+                        image_url: [self.card.image_url],
+                        full_name: [self.card.full_name, Validators.required],
+                        phone1: [self.card.phone1],
+                        phone2: [self.card.phone2],
+                        email: [self.card.email],
+                        github: [self.card.github],
+                        linkedin: [self.card.linkedin],
+                        twitter: [self.card.twitter],
+                        blurb: [self.card.blurb]
+                    });
 
                 }
             );
@@ -63,7 +90,7 @@ export class CardEdit extends BaseComponent {
      */
     public imageChange(event) {
 
-        let self:CardEdit = this;
+        let self:McCardEdit = this;
 
         if(!event.target.files.length) {
             return;
@@ -84,11 +111,11 @@ export class CardEdit extends BaseComponent {
      */
     public save() {
 
-        let self:CardEdit = this;
+        let self:McCardEdit = this;
 
         self.cardService.setCard(self.card);
 
-        MyLogger.log(self.card);
+        McLogger.log(self.card);
 
     }
 

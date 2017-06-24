@@ -4,52 +4,53 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { IonicStorageModule } from '@ionic/storage';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
-import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
-import { CardEdit } from '../pages/card-edit/card-edit';
-import { CardSend } from '../pages/card-send/card-send';
-import { CardService } from './services/card-service';
-import { FileSelector } from "./components/file-selector/file-selector";
-import { EmailFirst } from "../email-templates/first/first";
-import { EmailSecond } from "../email-templates/second/second";
-import { Rounded } from "./directives/rounded";
-import { PaddingTop, PaddingRight, PaddingBottom, PaddingLeft } from "./directives/padding";
+import { McApp } from './app.component';
+import { McHomePage } from '../pages/home/home';
+import { McCardEdit } from '../pages/card-edit/card-edit';
+import { McCardSend } from '../pages/card-send/card-send';
+import { McCardService } from './services/card-service';
+import { McFileSelector } from "./components/file-selector/file-selector";
+import { McEmailFirst } from "../email-templates/first/first";
+import { McEmailSecond } from "../email-templates/second/second";
+import { McRounded } from "./directives/rounded";
+import { McPaddingTop, McPaddingRight, McPaddingBottom, McPaddingLeft } from "./directives/padding";
 
 @NgModule({
     declarations: [
-        MyApp,
-        HomePage,
-        CardEdit,
-        CardSend,
-        EmailFirst,
-        EmailSecond,
-        FileSelector,
-        Rounded,
-        PaddingTop,
-        PaddingRight,
-        PaddingBottom,
-        PaddingLeft
+        McApp,
+        McHomePage,
+        McCardEdit,
+        McCardSend,
+        McEmailFirst,
+        McEmailSecond,
+        McFileSelector,
+        McRounded,
+        McPaddingTop,
+        McPaddingRight,
+        McPaddingBottom,
+        McPaddingLeft
     ],
     imports: [
         BrowserModule,
         FormsModule,
-        IonicModule.forRoot(MyApp),
+        ReactiveFormsModule,
+        IonicModule.forRoot(McApp),
         IonicStorageModule.forRoot()
     ],
     bootstrap: [IonicApp],
     entryComponents: [
-        MyApp,
-        HomePage,
-        CardEdit,
-        CardSend,
-        FileSelector
+        McApp,
+        McHomePage,
+        McCardEdit,
+        McCardSend,
+        McFileSelector
     ],
     providers: [
         StatusBar,
         SplashScreen,
-        CardService,
+        McCardService,
         {provide: ErrorHandler, useClass: IonicErrorHandler}
     ]
 })

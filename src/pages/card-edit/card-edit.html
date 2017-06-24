@@ -7,49 +7,65 @@
     </ion-navbar>
 </ion-header>
 <ion-content>
-    <ion-list>
-        <ion-item color="primary">
-            <ion-avatar *ngIf="card.image_url" item-start>
-                <img [src]="card.image_url">
-            </ion-avatar>
-            <file-selector [(ngModel)]="card.image_url" name="file" [accept]="'image/*'" (change)="imageChange($event)" ngDefaultControl>
-                <button ion-button icon-left>
-                    <ion-icon name="image"></ion-icon>
-                    Profile Picture
-                </button>
-            </file-selector>
-        </ion-item>
-        <ion-item color="primary">
-            <ion-label stacked>Full Name</ion-label>
-            <ion-input type="text" [(ngModel)]="card.full_name" name="full_name"></ion-input>
-        </ion-item>
-        <ion-item color="primary">
-            <ion-label stacked>Phone 1</ion-label>
-            <ion-input type="text" [(ngModel)]="card.phone1" name="phone1"></ion-input>
-        </ion-item>
-        <ion-item color="primary">
-            <ion-label stacked>Phone 2</ion-label>
-            <ion-input type="text" [(ngModel)]="card.phone2" name="phone2"></ion-input>
-        </ion-item>
-        <ion-item color="primary">
-            <ion-label stacked>Email</ion-label>
-            <ion-input type="email" [(ngModel)]="card.email" name="email"></ion-input>
-        </ion-item>
-        <ion-item color="primary">
-            <ion-label stacked><ion-icon name="logo-github"></ion-icon> GitHub</ion-label>
-            <ion-input type="text" [(ngModel)]="card.github" name="github"></ion-input>
-        </ion-item>
-        <ion-item color="primary">
-            <ion-label stacked>LinkedIn</ion-label>
-            <ion-input type="text" [(ngModel)]="card.linkedin" name="linkedin"></ion-input>
-        </ion-item>
-        <ion-item color="primary">
-            <ion-label stacked>Twitter</ion-label>
-            <ion-input type="text" [(ngModel)]="card.twitter" name="twitter"></ion-input>
-        </ion-item>
-        <ion-item color="primary">
-            <ion-label stacked>Blurb</ion-label>
-            <ion-input type="text" [(ngModel)]="card.blurb" name="blurb"></ion-input>
-        </ion-item>
-    </ion-list>
+    <form [formGroup]="cardFormGroup">
+        <ion-list>
+            <ion-item color="primary">
+                <ion-avatar *ngIf="card.image_url" item-start>
+                    <file-selector formControlName="image_url" name="file" [accept]="'image/*'" (change)="imageChange($event)" ngDefaultControl>
+                        <img [src]="card.image_url">
+                    </file-selector>
+                </ion-avatar>
+                <ion-label stacked>Full Name</ion-label>
+                <ion-input type="text" formControlName="full_name" name="full_name"></ion-input>
+            </ion-item>
+            <ion-item color="primary">
+                <ion-avatar text-center item-start>
+                    <ion-icon class="avatar-icon" name="phone-portrait"></ion-icon>
+                </ion-avatar>
+                <ion-label stacked>Phone 1</ion-label>
+                <ion-input type="text" formControlName="phone1" name="phone1"></ion-input>
+            </ion-item>
+            <ion-item color="primary">
+                <ion-avatar text-center item-start>
+                    <ion-icon class="avatar-icon" name="phone-portrait"></ion-icon>
+                </ion-avatar>
+                <ion-label stacked>Phone 2</ion-label>
+                <ion-input type="text" formControlName="phone2" name="phone2"></ion-input>
+            </ion-item>
+            <ion-item color="primary">
+                <ion-avatar text-center item-start>
+                    <ion-icon class="avatar-icon" name="at"></ion-icon>
+                </ion-avatar><ion-label stacked>Email</ion-label>
+                <ion-input type="email" formControlName="email" name="email"></ion-input>
+            </ion-item>
+            <ion-item color="primary">
+                <ion-avatar text-center item-start>
+                    <ion-icon class="avatar-icon" name="logo-github"></ion-icon>
+                </ion-avatar>
+                <ion-label stacked>GitHub</ion-label>
+                <ion-input type="text" formControlName="github" name="github"></ion-input>
+            </ion-item>
+            <ion-item color="primary">
+                <ion-avatar text-center item-start>
+                    <ion-icon class="avatar-icon" name="logo-linkedin"></ion-icon>
+                </ion-avatar>
+                <ion-label stacked>LinkedIn</ion-label>
+                <ion-input type="text" formControlName="linkedin" name="linkedin"></ion-input>
+            </ion-item>
+            <ion-item color="primary">
+                <ion-avatar text-center item-start>
+                    <ion-icon class="avatar-icon" name="logo-twitter"></ion-icon>
+                </ion-avatar>
+                <ion-label stacked>Twitter</ion-label>
+                <ion-input type="text" formControlName="twitter" name="twitter"></ion-input>
+            </ion-item>
+            <ion-item color="primary">
+                <ion-avatar text-center item-start>
+                    <ion-icon class="avatar-icon" name="quote"></ion-icon>
+                </ion-avatar>
+                <ion-label stacked>Blurb</ion-label>
+                <ion-input type="text" formControlName="blurb" name="blurb"></ion-input>
+            </ion-item>
+        </ion-list>
+    </form>
 </ion-content>

@@ -6,7 +6,7 @@ import { Directive, HostBinding, Input } from '@angular/core';
 @Directive({
     selector: '[pt]'
 })
-export class PaddingTop {
+export class McPaddingTop {
     @HostBinding('style.padding-top')
     @Input('pt') paddingTop : string;
 }
@@ -17,7 +17,7 @@ export class PaddingTop {
 @Directive({
     selector: '[pr]'
 })
-export class PaddingRight {
+export class McPaddingRight {
     @HostBinding('style.padding-right')
     @Input('pr') paddingRight : string;
 }
@@ -28,7 +28,7 @@ export class PaddingRight {
 @Directive({
     selector: '[pb]'
 })
-export class PaddingBottom {
+export class McPaddingBottom {
     @HostBinding('style.padding-bottom')
     @Input('pb') paddingBottom : string;
 }
@@ -39,7 +39,7 @@ export class PaddingBottom {
 @Directive({
     selector: '[pl]'
 })
-export class PaddingLeft {
+export class McPaddingLeft {
     @HostBinding('style.padding-left')
     @Input('pl') paddingLeft : string;
 }

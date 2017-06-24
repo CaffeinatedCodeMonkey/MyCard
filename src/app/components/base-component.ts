@@ -1,5 +1,5 @@
 import { Component, ElementRef } from '@angular/core';
-import { MyLogger } from '../library/my-logger';
+import { McLogger } from '../library/logger';
 declare var jquery:any;
 declare var $:any;
 
@@ -50,7 +50,7 @@ export class BaseComponent {
             }
             else {
 
-                MyLogger.error('Invalid selector property type in ', self)
+                McLogger.error('Invalid selector property type in ', self)
 
             }
 

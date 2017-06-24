@@ -6,7 +6,7 @@ import { Directive, HostBinding, Input } from '@angular/core';
 @Directive({
     selector: '[mt]'
 })
-export class MarginTop {
+export class McMarginTop {
     @HostBinding('style.margin-top')
     @Input('mt') marginTop : string;
 }
@@ -17,7 +17,7 @@ export class MarginTop {
 @Directive({
     selector: '[mr]'
 })
-export class MarginRight {
+export class McMarginRight {
     @HostBinding('style.margin-right')
     @Input('mr') marginRight : string;
 }
@@ -28,7 +28,7 @@ export class MarginRight {
 @Directive({
     selector: '[mb]'
 })
-export class MarginBottom {
+export class McMarginBottom {
     @HostBinding('style.margin-bottom')
     @Input('mb') marginBottom : string;
 }
@@ -39,7 +39,7 @@ export class MarginBottom {
 @Directive({
     selector: '[ml]'
 })
-export class MarginLeft {
+export class McMarginLeft {
     @HostBinding('style.margin-left')
     @Input('ml') marginLeft : string;
 }

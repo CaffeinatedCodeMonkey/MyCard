@@ -8,7 +8,7 @@ import { BaseComponent } from "../base-component";
     selector: 'file-selector',
     templateUrl: 'file-selector.html'
 })
-export class FileSelector extends BaseComponent {
+export class McFileSelector extends BaseComponent {
 
     @Input('file') public file:any;
     @Input('accept') public accept:string;
@@ -25,7 +25,7 @@ export class FileSelector extends BaseComponent {
 
         super.ngAfterViewInit();
 
-        let self:FileSelector = this;
+        let self:McFileSelector = this;
 
         // Bind a click on the content as a click on the file input, which is actually hidden.
         self.elements.$select_trigger.on('click', () => {
