@@ -10,7 +10,7 @@ import { McHomePage } from '../pages/home/home';
 })
 
 export class McApp {
-  rootPage:any = HomePage;
+  rootPage:any = McHomePage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {

@@ -26,3 +26,14 @@
 .avatar-icon {
   font-size: 35px;
 }
+
+// Remove all of the default validation indicators. I want to go with custom indicators.
+.item-md.item-input.ng-invalid.ng-touched:not(.input-has-focus) .item-inner,
+.item-md.item-input.ng-valid.input-has-value:not(.input-has-focus) .item-inner,
+.list-md .item-input.ng-valid.input-has-value:not(.input-has-focus):last-child,
+.list-md .item-block .item-inner {
+  border-bottom-color: transparent;
+  border-bottom: none;
+  box-shadow: none;
+}
+

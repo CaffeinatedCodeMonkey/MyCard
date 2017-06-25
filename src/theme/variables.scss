@@ -23,12 +23,15 @@ $font-path: "../assets/fonts";
 // colors so you can add, rename and remove colors as needed.
 // The "primary" color is the only required color in the map.
 
+// Colors derived from http://paletton.com/#uid=33f080kJS6KvW5fuP8MNdeqCnl7
 $colors: (
-  primary:    #122A37,
-  secondary:  #071A25,
-  danger:     #f53d3d,
-  light:      #f4f4f4,
-  dark:       #222
+  primary:    #070707,
+  primary-text:    #ffffff,
+  secondary:  #9b0904,
+  secondary-text:  #ffffff,
+  danger:     #001a17,
+  light:      #322e2e,
+  dark:       #000000,
 );
 
 
