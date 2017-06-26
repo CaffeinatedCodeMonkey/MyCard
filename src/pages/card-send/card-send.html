@@ -1,56 +1,56 @@
 <ion-header>
-    <ion-navbar color="primary">
+    <ion-navbar>
         <ion-title>Send Card</ion-title>
         <ion-buttons end>
-            <button (click)="send()" ion-button><span><ion-icon name="send"></ion-icon>  Send</span></button>
+            <button (click)="send()" ion-button [disabled]="canEmail"><span><ion-icon name="send"></ion-icon>  Send</span></button>
         </ion-buttons>
     </ion-navbar>
 </ion-header>
 <ion-content>
 
     <ion-list>
-        <ion-item color="primary">
+        <ion-item *ngIf="card.image_url">
             <ion-avatar *ngIf="card.image_url" item-start>
                 <img [src]="card.image_url">
             </ion-avatar>
             <ion-label [class]="card.full_name ? 'text-semibold' : 'text-muted'">{{ card.full_name || 'Full Name' }}</ion-label>
         </ion-item>
-        <ion-item color="primary">
+        <ion-item *ngIf="card.phone1">
             <ion-avatar text-center item-start>
                 <ion-icon class="avatar-icon" name="phone-portrait"></ion-icon>
             </ion-avatar>
             <ion-label>{{ card.phone1 }}</ion-label>
             <ion-checkbox item-end color="secondary" [disabled]="!card.phone1"></ion-checkbox>
         </ion-item>
-        <ion-item color="primary">
+        <ion-item *ngIf="card.phone2">
             <ion-avatar text-center item-start>
                 <ion-icon class="avatar-icon" name="phone-portrait"></ion-icon>
             </ion-avatar>
             <ion-label>{{ card.phone2 }}</ion-label>
             <ion-checkbox item-end color="secondary" [disabled]="!card.phone2"></ion-checkbox>
         </ion-item>
-        <ion-item color="primary">
+        <ion-item *ngIf="card.email">
             <ion-avatar text-center item-start>
                 <ion-icon class="avatar-icon" name="at"></ion-icon>
             </ion-avatar>
             <ion-label>{{ card.email }}</ion-label>
             <ion-checkbox item-end color="secondary" [disabled]="!card.email" end></ion-checkbox>
         </ion-item>
-        <ion-item color="primary">
+        <ion-item *ngIf="card.github">
             <ion-avatar text-center item-start>
                 <ion-icon class="avatar-icon" name="logo-github"></ion-icon>
             </ion-avatar>
             <ion-label>github.com/{{ card.github }}</ion-label>
             <ion-checkbox item-end color="secondary" [disabled]="!card.github"></ion-checkbox>
         </ion-item>
-        <ion-item color="primary">
+        <ion-item *ngIf="card.linkedin">
             <ion-avatar text-center item-start>
                 <ion-icon class="avatar-icon" name="logo-linkedin"></ion-icon>
             </ion-avatar>
             <ion-label>linkedin.com/in/{{ card.linkedin }}</ion-label>
             <ion-checkbox item-end color="secondary" [disabled]="!card.linkedin"></ion-checkbox>
         </ion-item>
-        <!--<ion-item color="primary" *ngIf="card.blurb">-->
+        <!--<ion *ngIf="card.blurb">-->
             <!--<ion-label>-->
                 <!--<ion-icon name="text"></ion-icon>-->
                 <!--{{ card.blurb }}-->

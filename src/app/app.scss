@@ -37,3 +37,11 @@
   box-shadow: none;
 }
 
+ion-content {
+  background-color: color($colors, primary) !important;
+  background-image: url('/assets/images/45-degree-fabric-dark.png');
+
+  ion-item {
+    background-color: transparent !important;
+  }
+}

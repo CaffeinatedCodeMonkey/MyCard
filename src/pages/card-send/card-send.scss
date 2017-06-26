@@ -1,8 +1,26 @@
 page-card-send {
   ion-navbar {
+    .toolbar-background, .toolbar-title {
+      background-color: color($colors, secondary) !important;
+      color: color($colors, secondary-text) !important;
+    }
 
+    button {
+      background-color: color($colors, secondary) !important;
+      color: color($colors, secondary-text) !important;
+      //border: 1px solid color($colors, secondary-text) !important;
+    }
   }
   ion-content {
-    background-color: color($colors, primary) !important;
+
+    ion-item {
+      background-color: transparent !important;
+      color: color($colors, primary-text) !important;
+      border-bottom: 1px solid color($colors, light) !important;
+
+      ion-label {
+        color: color($colors, primary-text) !important;
+      }
+    }
   }
 }
