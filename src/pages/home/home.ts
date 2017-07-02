@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
-import {Platform, Toast, ToastController} from 'ionic-angular';
+import { Platform, Toast, ToastController } from 'ionic-angular';
 import { McCardEdit } from '../card-edit/card-edit';
 import { McCardSend } from '../card-send/card-send';
 import { EmailComposer } from "@ionic-native/email-composer";
-import {ArrayObservable} from "rxjs/observable/ArrayObservable";
-import {Observable} from "rxjs/Observable";
 
 @Component({
     selector: 'page-home',
@@ -15,7 +13,8 @@ export class McHomePage {
 
     private cardSend:any;
     private cardEdit:any;
-    private notices:Observable<Array<any>>;
+    private notices:Array<Toast> = [];
+    private noticeIsActive:boolean = false;
 
     /**
      * Constructor
@@ -31,9 +30,6 @@ export class McHomePage {
         self.cardEdit = McCardEdit;
         self.cardSend = McCardSend;
 
-        self.notices.subscribe((fn:any) => {
-
-        });
         self.alertIfEmailUnavailable();
 
     }
@@ -58,9 +54,14 @@ export class McHomePage {
 
                 if(!available) {
 
-                    self.notices.
-                    // Pop the toast.
-                    toast.present();
+                    self.notices.push(toast);
+
+                    if(!self.noticeIsActive) {
+
+                        self.noticeIsActive = true;
+                        self.displayNotice();
+
+                    }
 
                 }
 
@@ -69,10 +70,50 @@ export class McHomePage {
         }
         else {
 
-            // Pop the toast.
-            toast.present();
+            console.log(self.notices);
+            self.notices.push(toast);
+
+            if(!self.noticeIsActive) {
+
+                self.noticeIsActive = true;
+                self.displayNotice();
+
+            }
+        }
+
+    }
+
+    /**
+     * Will show the stored notices one at a time until they're all done.
+     */
+    private displayNotice():void {
+
+        let self:McHomePage = this;
+
+        let currentNotice:Toast = self.notices.shift();
+
+        if(self.notices.length > 0) {
+
+            // If there're any more notices, display the next one.
+            currentNotice.onDidDismiss(() => {
+
+                // I want a small pause before showing the next notice.
+                setTimeout(() => {
+                    self.displayNotice.bind(self);
+                }, 250);
+                
+            });
 
         }
+        else {
+
+            // If there aren't any more notices, we want to set that the notice is no longer active.
+            currentNotice.onDidDismiss(() => {
+                self.noticeIsActive = false;
+            });
+        }
+
+        currentNotice.present();
 
     }
 
