@@ -7,8 +7,8 @@ const CARD = 'card';
 @Injectable()
 export class McCardService {
 
-    private ready:boolean = false;
-    public card:McCard = {
+    private ready: boolean = false;
+    public card: McCard = {
         image_url: null,
         full_name: null,
         phone1: null,
@@ -27,7 +27,7 @@ export class McCardService {
      */
     constructor(public storage: Storage) {
 
-        let self:McCardService = this;
+        let self :McCardService = this;
 
         self.populate();
 
@@ -38,7 +38,7 @@ export class McCardService {
      */
     public populate(): Promise<McCard|any> {
 
-        let self:McCardService = this;
+        let self: McCardService = this;
 
         return new Promise((resolve, reject) => {
 
@@ -69,9 +69,9 @@ export class McCardService {
      * @param key
      * @returns {Promise<T>}
      */
-    public get(key?:string):Promise<object|string|any> {
+    public get(key?:string): Promise<object|string|any> {
 
-        let self:McCardService = this;
+        let self: McCardService = this;
 
         return new Promise((resolve, reject) => {
 
@@ -129,7 +129,7 @@ export class McCardService {
      */
     public set(key:string, value:string|null):void {
 
-        let self:McCardService = this;
+        let self: McCardService = this;
 
         // Set the value.
         self.card[key] = value;
@@ -146,7 +146,7 @@ export class McCardService {
      */
     public setCard(card:object):void {
 
-        let self:McCardService = this;
+        let self: McCardService = this;
 
         // Set the values.
         for(let i in card) {
@@ -167,7 +167,7 @@ export class McCardService {
      */
     public unset(key:string):void {
 
-        let self:McCardService = this;
+        let self: McCardService = this;
 
         // Leverage this class's set function.
         self.set(key, null);
@@ -179,7 +179,7 @@ export class McCardService {
      */
     private commit():void {
 
-        let self:McCardService = this;
+        let self: McCardService = this;
 
         self.storage.set(CARD, JSON.stringify(self.card));
 

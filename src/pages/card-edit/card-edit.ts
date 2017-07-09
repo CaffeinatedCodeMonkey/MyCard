@@ -17,8 +17,8 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
  */
 export class McCardEdit extends BaseComponent {
 
-    private cardFormGroup:FormGroup;
-    private card:McCard = {
+    private cardFormGroup :FormGroup;
+    private card: McCard = {
         image_url: null,
         full_name: null,
         phone1: null,
@@ -45,7 +45,7 @@ export class McCardEdit extends BaseComponent {
 
         super(el);
 
-        let self:McCardEdit = this;
+        let self: McCardEdit = this;
 
         self.cardFormGroup = self.formBuilder.group({
             image_url: [''],
@@ -90,13 +90,13 @@ export class McCardEdit extends BaseComponent {
      */
     public imageChange(event) {
 
-        let self:McCardEdit = this;
+        let self: McCardEdit = this;
 
         if(!event.target.files.length) {
             return;
         }
 
-        let reader:FileReader = new FileReader();
+        let reader: FileReader = new FileReader();
 
         reader.onload = (e: any):void => {
             self.card.image_url = e.target.result;
@@ -111,7 +111,7 @@ export class McCardEdit extends BaseComponent {
      */
     public save() {
 
-        let self:McCardEdit = this;
+        let self: McCardEdit = this;
 
         self.cardService.setCard(self.card);
 

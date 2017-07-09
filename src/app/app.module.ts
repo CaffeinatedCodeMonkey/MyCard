@@ -16,6 +16,7 @@ import { McEmailFirst } from "../email-templates/first/first";
 import { McEmailSecond } from "../email-templates/second/second";
 import { McRounded } from "./directives/rounded";
 import { McPaddingTop, McPaddingRight, McPaddingBottom, McPaddingLeft } from "./directives/padding";
+import { McNotificationQueueService } from "./services/notification-queue-service";
 
 @NgModule({
     declarations: [
@@ -51,6 +52,7 @@ import { McPaddingTop, McPaddingRight, McPaddingBottom, McPaddingLeft } from "./
         StatusBar,
         SplashScreen,
         McCardService,
+        McNotificationQueueService,
         {provide: ErrorHandler, useClass: IonicErrorHandler}
     ]
 })

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { McCardService } from "../../app/services/card-service";
 import { McCard } from "../../app/interfaces/card";
 import { EmailComposer } from "@ionic-native/email-composer";
-import {ActionSheetController, Platform} from "ionic-angular";
+import { ActionSheetController, Platform } from "ionic-angular";
 
 @Component({
     selector: 'page-card-send',
@@ -14,8 +14,8 @@ import {ActionSheetController, Platform} from "ionic-angular";
  */
 export class McCardSend {
 
-    private canEmail:boolean = false;
-    private card:McCard = {
+    private canEmail: boolean = false;
+    private card: McCard = {
         image_url: null,
         full_name: null,
         phone1: null,
@@ -38,7 +38,7 @@ export class McCardSend {
      */
     constructor(private cardService: McCardService, private emailComposer: EmailComposer, private platform: Platform, public actionSheetCtrl: ActionSheetController) {
 
-        let self:McCardSend = this;
+        let self: McCardSend = this;
 
         self.checkEmailAvailability()
 
@@ -49,7 +49,7 @@ export class McCardSend {
      */
     ngOnInit():void {
 
-        let self:McCardSend = this;
+        let self: McCardSend = this;
 
         self.cardService
             .get()
@@ -68,7 +68,7 @@ export class McCardSend {
      */
     private checkEmailAvailability():void {
 
-        let self:McCardSend = this;
+        let self: McCardSend = this;
 
         if(self.platform.is('cordova')) {
 
@@ -89,7 +89,7 @@ export class McCardSend {
 
     private send():void {
 
-        let self:McCardSend = this;
+        let self: McCardSend = this;
 
 
 
