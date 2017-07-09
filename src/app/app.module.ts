@@ -17,6 +17,9 @@ import { McEmailSecond } from "../email-templates/second/second";
 import { McRounded } from "./directives/rounded";
 import { McPaddingTop, McPaddingRight, McPaddingBottom, McPaddingLeft } from "./directives/padding";
 import { McNotificationQueueService } from "./services/notification-queue-service";
+import { McSendCapabilities } from "./services/send-capabilities";
+import { EmailComposer } from "@ionic-native/email-composer";
+import { SMS } from "@ionic-native/sms";
 
 @NgModule({
     declarations: [
@@ -53,6 +56,9 @@ import { McNotificationQueueService } from "./services/notification-queue-servic
         SplashScreen,
         McCardService,
         McNotificationQueueService,
+        McSendCapabilities,
+        EmailComposer,
+        SMS,
         {provide: ErrorHandler, useClass: IonicErrorHandler}
     ]
 })

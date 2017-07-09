@@ -1,20 +1,20 @@
 import { Component } from '@angular/core';
 import { McCardService } from "../../app/services/card-service";
 import { McCard } from "../../app/interfaces/card";
-import { EmailComposer } from "@ionic-native/email-composer";
-import { ActionSheetController, Platform } from "ionic-angular";
+import { ActionSheet, ActionSheetController } from "ionic-angular";
+import { McSendCapabilities } from "../../app/services/send-capabilities";
 
 @Component({
     selector: 'page-card-send',
     templateUrl: 'card-send.html',
-    providers: [McCardService, EmailComposer]
+    providers: [McCardService, McSendCapabilities]
 })
 /**
  * This is the class for the component that handles the view for sending cards.
  */
 export class McCardSend {
 
-    private canEmail: boolean = false;
+    private isAbleToSendCard: boolean = false;
     private card: McCard = {
         image_url: null,
         full_name: null,
@@ -26,28 +26,34 @@ export class McCardSend {
         twitter: null,
         blurb: null
     };
+    private actionSheetConfig: {title: string, buttons: Array<any>} = {
+        title: 'Sharing method',
+        buttons: [],
+    };
+    private actionSheet: ActionSheet;
 
     /**
      * Constructor
      *
      * @param cardService
-     * @param emailComposer
-     * @param platform
+     * @param sendCapabilities
      * @param actionSheetCtrl
      * @return void
      */
-    constructor(private cardService: McCardService, private emailComposer: EmailComposer, private platform: Platform, public actionSheetCtrl: ActionSheetController) {
+    constructor(private cardService: McCardService, private sendCapabilities: McSendCapabilities, public actionSheetCtrl: ActionSheetController) {
 
         let self: McCardSend = this;
 
-        self.checkEmailAvailability()
+        self.buildActionSheet();
+
+        self.isAbleToSendCard = self.sendCapabilities.getEmailAvailability() || self.sendCapabilities.getSmsAvailability();
 
     }
 
     /**
      * Retrieves the new card each time it enters the view.
      */
-    ngOnInit():void {
+    ngOnInit(): void {
 
         let self: McCardSend = this;
 
@@ -63,35 +69,46 @@ export class McCardSend {
 
     }
 
-    /**
-     * Checks to see if the email composer is available.
-     */
-    private checkEmailAvailability():void {
+    private buildActionSheet(): void {
 
         let self: McCardSend = this;
 
-        if(self.platform.is('cordova')) {
+        if(self.sendCapabilities.getEmailAvailability()) {
 
-            self.emailComposer.isAvailable().then((available: boolean) =>{
-
-                if(available) {
-
-                    //Now we know we can send emails
-                    self.canEmail = true;
+            self.actionSheetConfig.buttons.push({
+                text: 'Email',
+                handler: () => {
 
                 }
-
             });
 
         }
 
+        if(self.sendCapabilities.getSmsAvailability()) {
+
+            self.actionSheetConfig.buttons.push({
+                text: 'SMS',
+                handler: () => {
+
+                }
+            })
+
+        }
+
+        self.actionSheetConfig.buttons.push({
+            text: 'Cancel',
+            role: 'cancel'
+        });
+
+        self.actionSheet = self.actionSheetCtrl.create(self.actionSheetConfig);
+
     }
 
-    private send():void {
+    private send(): void {
 
         let self: McCardSend = this;
 
-
+        self.actionSheet.present();
 
     }
 

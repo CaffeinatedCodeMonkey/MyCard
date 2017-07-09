@@ -2,7 +2,7 @@
     <ion-navbar>
         <ion-title>Send Card</ion-title>
         <ion-buttons end>
-            <button (click)="send()" ion-button [disabled]="canEmail"><span><ion-icon name="send"></ion-icon>  Send</span></button>
+            <button (click)="send()" ion-button [disabled]="!isAbleToSendCard"><span><ion-icon name="send"></ion-icon>  Send</span></button>
         </ion-buttons>
     </ion-navbar>
 </ion-header>

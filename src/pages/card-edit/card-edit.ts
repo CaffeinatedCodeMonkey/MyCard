@@ -17,7 +17,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
  */
 export class McCardEdit extends BaseComponent {
 
-    private cardFormGroup :FormGroup;
+    private cardFormGroup: FormGroup;
     private card: McCard = {
         image_url: null,
         full_name: null,
@@ -29,10 +29,10 @@ export class McCardEdit extends BaseComponent {
         twitter: null,
         blurb: null
     };
-    protected selectors:any = {
+    protected selectors: any = {
         component: 'page-card-edit'
     };
-    protected elements:any = {};
+    protected elements: any = {};
 
     /**
      * Constructor
@@ -41,7 +41,7 @@ export class McCardEdit extends BaseComponent {
      * @param cardService
      * @param formBuilder
      */
-    constructor(protected el:ElementRef, private cardService:McCardService, private formBuilder:FormBuilder) {
+    constructor(protected el: ElementRef, private cardService: McCardService, private formBuilder: FormBuilder) {
 
         super(el);
 
@@ -98,7 +98,7 @@ export class McCardEdit extends BaseComponent {
 
         let reader: FileReader = new FileReader();
 
-        reader.onload = (e: any):void => {
+        reader.onload = (e: any): void => {
             self.card.image_url = e.target.result;
         };
 

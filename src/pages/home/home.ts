@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
 import { McCardEdit } from '../card-edit/card-edit';
 import { McCardSend } from '../card-send/card-send';
-import { EmailComposer } from "@ionic-native/email-composer";
 import { McNotificationQueueService } from "../../app/services/notification-queue-service";
+import { McSendCapabilities } from "../../app/services/send-capabilities";
 
 @Component({
     selector: 'page-home',
     templateUrl: 'home.html',
-    providers: [EmailComposer, McNotificationQueueService]
+    providers: [McNotificationQueueService, McSendCapabilities]
 })
 export class McHomePage {
 
@@ -18,11 +17,10 @@ export class McHomePage {
     /**
      * Constructor
      *
-     * @param emailComposer
      * @param notificationQueue
-     * @param platform
+     * @param sendCapabilities
      */
-    constructor(private emailComposer: EmailComposer, private notificationQueue: McNotificationQueueService, private platform: Platform) {
+    constructor(private notificationQueue: McNotificationQueueService, private sendCapabilities: McSendCapabilities) {
 
         let self:McHomePage = this;
 
@@ -30,32 +28,37 @@ export class McHomePage {
         self.cardSend = McCardSend;
 
         self.alertIfEmailUnavailable();
+        self.alertIfSmsUnavailable();
 
     }
 
     /**
-     * Pops up toast if the device isn't able to be sent.
+     * Pops up toast if emails aren't able to be sent.
      */
     public alertIfEmailUnavailable():void {
 
         let self:McHomePage = this;
 
-        if(self.platform.is('cordova')) {
-
-            self.emailComposer.isAvailable().then((available: boolean) =>{
-
-                if(!available) {
-
-                    self.notificationQueue.addNotification('Unable to send your card via email.');
-
-                }
-
-            });
-
-        }
-        else {
+        if(!self.sendCapabilities.getEmailAvailability()) {
 
             self.notificationQueue.addNotification('Unable to send your card via email.');
+            console.log('email disabled');
+
+        }
+
+    }
+
+    /**
+     * Pops up toast if SMS messages aren't able to be sent.
+     */
+    public alertIfSmsUnavailable():void {
+
+        let self:McHomePage = this;
+
+        if(!self.sendCapabilities.getSmsAvailability()) {
+
+            console.log('sms disabled');
+            self.notificationQueue.addNotification('Unable to send your card via SMS.');
 
         }
 

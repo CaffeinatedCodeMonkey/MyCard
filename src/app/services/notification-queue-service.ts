@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { Toast, ToastController } from "ionic-angular";
 
 const DEFAULT_DURATION = 3000;
+const DEFAULT_INTERVAL = 250;
 const DEFAULT_POSITION = 'bottom';
 
 @Injectable()
@@ -42,7 +43,11 @@ export class McNotificationQueueService {
 
         self.notices.push(toast);
 
-        self.kickOffNotification();
+        if(!self.noticeIsActive) {
+
+            self.kickOffNotification();
+
+        }
 
     }
 
@@ -71,26 +76,25 @@ export class McNotificationQueueService {
 
         let currentNotice: Toast = self.notices.shift();
 
-        if(self.notices.length > 0) {
+        currentNotice.onDidDismiss(() => {
 
-            // If there're any more notices, display the next one.
-            currentNotice.onDidDismiss(() => {
+            // I want a small pause before showing the next notice.
+            setTimeout(() => {
+                if(self.notices.length > 0) {
 
-                // I want a small pause before showing the next notice.
-                setTimeout(() => {
-                    self.displayNotice.bind(self);
-                }, 250);
+                    // If there're any more notices, display the next one.
+                    self.displayNotice();
 
-            });
+                }
+                else {
 
-        }
-        else {
+                    // If there aren't any more notices, we want to set that the notice is no longer active.
+                    self.noticeIsActive = false;
 
-            // If there aren't any more notices, we want to set that the notice is no longer active.
-            currentNotice.onDidDismiss(() => {
-                self.noticeIsActive = false;
-            });
-        }
+                }
+            }, DEFAULT_INTERVAL);
+
+        });
 
         currentNotice.present();
 
