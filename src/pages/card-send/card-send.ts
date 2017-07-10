@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { McCardService } from "../../app/services/card-service";
 import { McCard } from "../../app/interfaces/card";
-import { ActionSheet, ActionSheetController } from "ionic-angular";
+import { ActionSheet, ActionSheetController, AlertController } from "ionic-angular";
 import { McSendCapabilities } from "../../app/services/send-capabilities";
 
 @Component({
@@ -31,16 +31,43 @@ export class McCardSend {
         buttons: [],
     };
     private actionSheet: ActionSheet;
+    private emailAlertConfig: {title: string, message: string, inputs: Array<any>, buttons: Array<any>} = {
+        title: 'Email Card',
+        message: "Enter an email address to send your card to",
+        inputs: [
+            {
+                name: 'email',
+                placeholder: 'Email'
+            },
+        ],
+        buttons: []
+    };
+    private smsAlertConfig: {title: string, message: string, inputs: Array<any>, buttons: Array<any>} = {
+        title: 'Text Card',
+        message: "Enter an phone number to send your card to",
+        inputs: [
+            {
+                name: 'phone',
+                placeholder: 'Phone Number'
+            },
+        ],
+        buttons: []
+    };
 
     /**
      * Constructor
      *
      * @param cardService
      * @param sendCapabilities
-     * @param actionSheetCtrl
+     * @param actionSheetController
+     * @param alertController
      * @return void
      */
-    constructor(private cardService: McCardService, private sendCapabilities: McSendCapabilities, public actionSheetCtrl: ActionSheetController) {
+    constructor(
+        private cardService: McCardService,
+        private sendCapabilities: McSendCapabilities,
+        private actionSheetController: ActionSheetController,
+        private alertController: AlertController) {
 
         let self: McCardSend = this;
 
@@ -69,46 +96,76 @@ export class McCardSend {
 
     }
 
+    /**
+     * Sets up the action sheet based on the device's capabilities.
+     */
     private buildActionSheet(): void {
 
         let self: McCardSend = this;
 
-        if(self.sendCapabilities.getEmailAvailability()) {
+        // if(self.sendCapabilities.getEmailAvailability()) {
 
             self.actionSheetConfig.buttons.push({
-                text: 'Email',
+                text: 'Send via email',
                 handler: () => {
+
+                    self.sendCardViaEmail();
 
                 }
             });
 
-        }
+        // }
 
-        if(self.sendCapabilities.getSmsAvailability()) {
+        // if(self.sendCapabilities.getSmsAvailability()) {
 
             self.actionSheetConfig.buttons.push({
-                text: 'SMS',
+                text: 'Send via SMS',
                 handler: () => {
 
-                }
-            })
+                    self.sendCardViaSms();
 
-        }
+                }
+            });
+
+        // }
 
         self.actionSheetConfig.buttons.push({
             text: 'Cancel',
             role: 'cancel'
         });
 
-        self.actionSheet = self.actionSheetCtrl.create(self.actionSheetConfig);
+        self.actionSheet = self.actionSheetController.create(self.actionSheetConfig);
 
     }
 
-    private send(): void {
+    /**
+     * Shows the action options.
+     */
+    private showActionOptions(): void {
 
         let self: McCardSend = this;
 
         self.actionSheet.present();
+
+    }
+
+    private sendCardViaEmail(): void {
+
+        let self: McCardSend = this;
+
+        let alert = self.alertController.create(self.emailAlertConfig);
+
+        alert.present();
+
+    }
+
+    private sendCardViaSms(): void {
+
+        let self: McCardSend = this;
+
+        let alert = self.alertController.create(self.smsAlertConfig);
+
+        alert.present();
 
     }
 
