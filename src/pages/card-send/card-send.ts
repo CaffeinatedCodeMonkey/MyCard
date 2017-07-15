@@ -129,12 +129,11 @@ export class McCardSend {
 
         // }
 
+        // TODO: Figure out why the cancel button isn't showing up the second time of opening the action sheet.
         self.actionSheetConfig.buttons.push({
             text: 'Cancel',
             role: 'cancel'
         });
-
-        self.actionSheet = self.actionSheetController.create(self.actionSheetConfig);
 
     }
 
@@ -145,10 +144,15 @@ export class McCardSend {
 
         let self: McCardSend = this;
 
+        self.actionSheet = self.actionSheetController.create(self.actionSheetConfig);
+
         self.actionSheet.present();
 
     }
 
+    /**
+     * Sends the card by email.
+     */
     private sendCardViaEmail(): void {
 
         let self: McCardSend = this;
@@ -159,6 +163,9 @@ export class McCardSend {
 
     }
 
+    /**
+     * Sends the card by SMS.
+     */
     private sendCardViaSms(): void {
 
         let self: McCardSend = this;
